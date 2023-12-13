@@ -1,13 +1,13 @@
 "use client";
 
-
 import { createRoomAction } from "../../_lib/action";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import { Llm, SubmitData, Character } from "../../types/Llm";
-
+import { useRouter } from "next/navigation";
 
 export default function Create() {
+  const router = useRouter();
   const [ispending, setIspending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -15,7 +15,7 @@ export default function Create() {
     { id: "chatgpt", name: "ChatGPT" },
     { id: "palm", name: "PaLM2" },
     { id: "llama", name: "LLaMA" },
-    { id: "claude", name: "Claude2" }
+    { id: "claude", name: "Claude2" },
   ];
 
   async function handleSubmit(e) {
@@ -41,10 +41,16 @@ export default function Create() {
     }
 
     const llmValues = {
-      chatgpt: formData.get("chatgpt") ? parseInt(formData.get("character-chatgpt")) : 0,
+      chatgpt: formData.get("chatgpt")
+        ? parseInt(formData.get("character-chatgpt"))
+        : 0,
       palm: formData.get("palm") ? parseInt(formData.get("character-palm")) : 0,
-      llama: formData.get("llama") ? parseInt(formData.get("character-llama")) : 0,
-      claude: formData.get("claude") ? parseInt(formData.get("character-claude")) : 0,
+      llama: formData.get("llama")
+        ? parseInt(formData.get("character-llama"))
+        : 0,
+      claude: formData.get("claude")
+        ? parseInt(formData.get("character-claude"))
+        : 0,
     };
 
     const room = await createRoomAction(
@@ -56,7 +62,7 @@ export default function Create() {
       llmValues.claude
     );
     setIspending(false);
-    redirect(`/room/${room.id}`);
+    router.push(`/room/${room.id}`);
   }
 
   return (
@@ -102,9 +108,9 @@ export default function Create() {
               <option value="1">公平で対話的</option>
               <option value="2">説明力があり分かりやすい</option>
               <option value="3">冷静で客観的</option>
-              <option value="4">知識豊富で学術的</option>
-              <option value="5">柔軟性を持つ</option>
-              <option value="6">リーダーシップを発揮</option>
+              <option value="3">知識豊富で学術的</option>
+              <option value="3">柔軟性を持つ</option>
+              <option value="3">リーダーシップを発揮</option>
             </select>
           </div>
         ))}
