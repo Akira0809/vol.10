@@ -99,9 +99,12 @@ export default function Create() {
             <input type="checkbox" id={llm.id} name={llm.id} />
             <select name={`character-${llm.id}`}>
               <option value="0">なし</option>
-              <option value="1">性格1</option>
-              <option value="2">性格2</option>
-              <option value="3">性格3</option>
+              <option value="1">公平で対話的</option>
+              <option value="2">説明力があり分かりやすい</option>
+              <option value="3">冷静で客観的</option>
+              <option value="4">知識豊富で学術的</option>
+              <option value="5">柔軟性を持つ</option>
+              <option value="6">リーダーシップを発揮</option>
             </select>
           </div>
         ))}
