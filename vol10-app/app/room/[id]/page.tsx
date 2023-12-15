@@ -27,6 +27,8 @@ export default async function Room({ params }: { params: { id: string } }) {
 
 
     return (
+      <>
+        <div>
         <div className="mx-4 text-center">
             <div className="border-b border-b-gray-300 py-4 text-left">
                 <h2 className="my-2 text-base md:text-2xl">{room.name}</h2>
