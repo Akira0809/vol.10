@@ -38,6 +38,7 @@ export default async function Room({ params }: { params: { id: string } }) {
                 </div>
             </div>
             <div className="my-6 md:my-8">
+              <Sidebar chatgpt={room.chatgpt} palm={room.palm} llama={room.llama} claude={room.claude}/>
                 <Suspense fallback={<Loading />}>
                     <Chats chats={chats} />
                     <Form
