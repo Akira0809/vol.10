@@ -66,7 +66,7 @@ export default function Create() {
   }
 
   return (
-    <div className="mx-4 my-10 flex flex-col-reverse bg-white md:flex-row border-blue-500 border-2 rounded-lg border-double">
+    <div className="mx-4 my-10 flex flex-col-reverse bg-white border-blue-500 border-4 rounded-lg border-double">
       <form className="flex basis-1/2 flex-col gap-10" onSubmit={handleSubmit}>
         {error && (
           <div>
@@ -74,9 +74,9 @@ export default function Create() {
           </div>
         )}
         <div>
-          <div className="">
-            <label htmlFor="name">
-              🍊ルームの名前<span className="text-red-500">*</span>
+          <div className="ml-9 mt-8">
+            <label htmlFor="name" className="text-lg font-bold">
+              🍊ルームの名前<span className="text-red-500"></span>
             </label>
           </div>
           <input
@@ -84,49 +84,62 @@ export default function Create() {
             id="name"
             name="name"
             autoComplete="off"
-            className="w-11/12 rounded-lg border px-4 py-2 my-3 focus:border-blue-300 focus:outline-none focus:ring border-blue-500 border-2"
+            className="w-4/5 ml-9 rounded-lg border px-4 py-2 my-3 focus:border-blue-300 focus:outline-none focus:ring border-blue-500 border-2"
             placeholder="ルーム名を入力..."
           />
         </div>
         <div>
-          <label htmlFor="description">
-            🍊どんなルームですか？<span className="text-red-500">*</span>
-          </label>
+          <div className="ml-9">
+            <label htmlFor="description" className="text-lg font-bold">
+              🍊どんなルームですか？<span className="text-red-500"></span>
+            </label>
+          </div>
           <textarea
             id="description"
             name="description"
             autoComplete="off"
-            className="h-40 w-full rounded-lg border px-4 py-2 my-3 focus:border-blue-300 focus:outline-none focus:ring border-blue-500 border-2"
+            className="h-40 w-11/12 ml-9 rounded-lg border px-4 py-2 my-3 focus:border-blue-300 focus:outline-none focus:ring border-blue-500 border-2"
             placeholder="ルームの説明を入力..."
           />
         </div>
 
-        {llms.map((llm) => (
-          <div key={llm.id}>
-            <label htmlFor={llm.id}>{llm.name}</label>
-            <input type="checkbox" id={llm.id} name={llm.id} />
-            <select
-              name={`character-${llm.id}`}
-              className="border-blue-500 border-2 rounded-lg"
-            >
-              <option value="0">なし</option>
-              <option value="1">公平で対話的</option>
-              <option value="2">説明力があり分かりやすい</option>
-              <option value="3">冷静で客観的</option>
-              <option value="3">知識豊富で学術的</option>
-              <option value="3">柔軟性を持つ</option>
-              <option value="3">リーダーシップを発揮</option>
-            </select>
-          </div>
-        ))}
+        <div className="flex flex-wrap justify-between gap-y-4">
+          {llms.map((llm) => (
+            <div key={llm.id} className="w-1/2">
+              <input
+                type="checkbox"
+                id={llm.id}
+                name={llm.id}
+                className="ml-9 mr-2"
+              />
+              <label htmlFor={llm.id} className="mr-1">
+                {llm.name}
+              </label>
+              <select
+                name={`character-${llm.id}`}
+                className="border-blue-500 border-2 rounded-lg"
+              >
+                <option value="0">なし</option>
+                <option value="1">公平で対話的</option>
+                <option value="2">説明力があり分かりやすい</option>
+                <option value="3">冷静で客観的</option>
+                <option value="4">知識豊富で学術的</option>
+                <option value="5">柔軟性を持つ</option>
+                <option value="6">リーダーシップを発揮</option>
+              </select>
+            </div>
+          ))}
+        </div>
 
-        <button
-          type="submit"
-          disabled={ispending}
-          className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
-        >
-          ルームをつくる
-        </button>
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            disabled={ispending}
+            className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-400 w-[200px] mb-10"
+          >
+            ルームをつくる
+          </button>
+        </div>
       </form>
     </div>
   );
