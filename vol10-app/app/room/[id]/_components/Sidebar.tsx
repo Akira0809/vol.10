@@ -34,7 +34,7 @@ export default function Sidebar({
   }
 
   return (
-    <div className="fixed mt-1 top-100 left-0 h-screen w-48 bg-gray-800 bg-opacity-80 p-5 z-[50]">
+    <div className="fixed mt-1 top-10 text-left left-0 h-screen w-48 bg-gray-800 bg-opacity-80 p-5 z-[50]">
       <button className="relative w-6 h-6" onClick={handleClick}>
         <link
           rel="stylesheet"
